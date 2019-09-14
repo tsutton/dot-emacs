@@ -66,10 +66,11 @@
 (require 'ido) 
 (ido-mode t)
 
-; Enabe various useful commands that are disabled by default
-(put 'narrow-to-region 'disabled nil)
-(put 'upcase-region 'disabled nil) ; Bound to C-x C-u by default
-(put 'downcase-region 'disabled nil) ; Bound to C-x C-l by default
+; Enable various useful commands that are disabled by default
+; These three are enabled by prelude-editor
+; (put 'narrow-to-region 'disabled nil)
+; (put 'upcase-region 'disabled nil) ; Bound to C-x C-u by default
+; (put 'downcase-region 'disabled nil) ; Bound to C-x C-l by default
 (put 'set-goal-column 'disabled nil) ; particularly good for macro
 
 ; yasnippet - I don't really use this for anything, but it's useful, so maybe I'll reinstall some day
@@ -78,7 +79,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; UI set-up
-(tool-bar-mode 0)
+; (tool-bar-mode 0) - already done by prelude
 (scroll-bar-mode 0)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

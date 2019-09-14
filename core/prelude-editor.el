@@ -48,9 +48,6 @@
 ;; Newline at end of file
 (setq require-final-newline t)
 
-;; delete the selection with a keypress
-(delete-selection-mode t)
-
 ;; store all backup and autosave files in the tmp dir
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
@@ -61,9 +58,6 @@
 (setq undo-tree-history-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq undo-tree-auto-save-history t)
-
-;; revert buffers automatically when underlying files are changed externally
-(global-auto-revert-mode t)
 
 ;; hippie expand is dabbrev expand on steroids
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
