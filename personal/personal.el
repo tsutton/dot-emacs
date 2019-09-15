@@ -126,6 +126,22 @@
 (define-key tide-mode-map (kbd "M-/") 'company-complete)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Prelude
+;; modify the defaults from Prelude, unless they've already been modified
+(if (equal (lookup-key (current-global-map) (kbd "C-c j"))
+           'avy-goto-word-or-subword-1)
+    (global-set-key (kbd "C-c j") 'avy-goto-char-timer)
+  )
+(if (equal (lookup-key (current-global-map) (kbd "s-."))
+           'avy-goto-word-or-subword-1)
+    (global-unset-key (kbd "s-."))
+  )
+
+(delete-selection-mode 0)
+(global-auto-revert-mode 0)
+(size-indication-mode 0)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load clever-specific things onto work computer
 (if (equal (system-name) "quillen.local")
     (progn
