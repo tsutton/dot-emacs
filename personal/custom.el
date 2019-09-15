@@ -27,7 +27,8 @@
  '(org-refile-targets (quote ((org-agenda-files :maxlevel . 2))))
  '(package-selected-packages
    (quote
-    (yaml-mode smex markdown-mode exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens operate-on-number move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring beacon anzu ace-window ein web-mode tide company go-mode)))
+    (company-anaconda anaconda-mode json-mode gotest go-projectile go-eldoc company-go rainbow-mode elisp-slime-nav rainbow-delimiters counsel swiper ivy ido-completing-read+ flx-ido yaml-mode smex markdown-mode exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens operate-on-number move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring beacon anzu ace-window ein web-mode tide company go-mode)))
+ '(swiper-goto-start-of-match t)
  '(tex-dvi-view-command
    (quote
     (cond

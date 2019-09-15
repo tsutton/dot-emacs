@@ -7,14 +7,14 @@
 (global-set-key (kbd "C-M-a") 'query-replace) ;formerly beginning-of-defun
 (global-set-key (kbd "C-M-e") 'query-replace-regexp) ;formerly end-of-defun
 (global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "M-C-S-n") 'forward-line) ; good for macros 
+(global-set-key (kbd "M-C-S-n") 'forward-line) ; good for macros
 
 (define-key emacs-lisp-mode-map (kbd "C-c C-l") 'emacs-lisp-byte-compile-and-load)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org mode set-up
-(add-hook 'org-mode-hook 
-	  (lambda () (progn 
+(add-hook 'org-mode-hook
+	  (lambda () (progn
 		       (define-key org-mode-map (kbd "C-M-j") 'org-shiftmetaleft)
 		       (define-key org-mode-map (kbd "C-M-k") 'org-shiftmetaright))))
 (add-hook 'org-mode-hook 'toggle-truncate-lines)
@@ -26,13 +26,13 @@
         ((equal (system-name) "ADAMS-WINDOWS") "C:\\Users\\Taylor Sutton\\Dropbox\\")
         )
        ))
-    (progn 
+    (progn
       (setq org-agenda-files (list (concat prefix "todo.org") (concat prefix "notes.org")))
       (setq org-directory prefix)
       )
     )
   )
-  
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C-mode-specific things
 (add-hook 'c-mode-hook
@@ -63,7 +63,7 @@
 ;; (column-number-mode)  - handled by prelude
 
 ; Enable ido-mode
-(require 'ido) 
+(require 'ido)
 (ido-mode t)
 
 ; Enable various useful commands that are disabled by default
@@ -127,7 +127,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Prelude
-;; modify the defaults from Prelude, unless they've already been modified
+;; modify the defaults from Prelude
+;;    (unless they've already been modified)
 (if (equal (lookup-key (current-global-map) (kbd "C-c j"))
            'avy-goto-word-or-subword-1)
     (global-set-key (kbd "C-c j") 'avy-goto-char-timer)
@@ -140,6 +141,28 @@
 (delete-selection-mode 0)
 (global-auto-revert-mode 0)
 (size-indication-mode 0)
+
+;; which-function-mode isn't helpful e.g. in org-mode, so
+;;   only turn it on in prog-modes
+(which-function-mode 0)
+(add-hook 'prelude-prog-mode-hook 'which-function-mode)
+
+;; Enabled minor modes: Anzu Async-Bytecomp-Package Auto-Composition
+;; Auto-Compression Auto-Encryption Auto-Revert Beacon Column-Number
+;; Company Diff-Auto-Refine Diff-Hl Editorconfig Eldoc Electric-Indent
+;; Elisp-Slime-Nav File-Name-Shadow Flx-Ido Flycheck Flyspell Font-Lock
+;; Global-Anzu Global-Company Global-Diff-Hl Global-Eldoc Global-Flycheck
+;; Global-Font-Lock Global-Git-Commit Global-Hl-Line Global-Hl-Todo
+;; Global-Magit-File Global-Undo-Tree Guru Hl-Todo Ido-Ubiquitous Ivy
+;; Line-Number Magit-Auto-Revert Magit-File Mouse-Wheel Prelude
+;; Projectile Rainbow Rainbow-Delimiters Recentf Save-Place Savehist
+;; Shell-Dirtrack Show-Smartparens Show-Smartparens-Global Smartparens
+;; Smartparens-Strict Super-Save Tooltip Transient-Mark Undo-Tree
+;; Volatile-Highlights Which-Key Whitespace Winner
+
+;; Modes that I don't want to think about or see
+(diminish 'whitespace-mode)
+(diminish 'auto-revert-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load clever-specific things onto work computer
