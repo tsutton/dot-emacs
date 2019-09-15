@@ -1,0 +1,89 @@
+* wishlist of commands/tweaks
+** auto-save non-file buffers to location
+   :PROPERTIES:
+   :ID:       826289ff-b660-4eb8-b1dc-e072d762279e
+   :END:
+** Tex mode that can navigate by equation number/label (in aux file)
+   :PROPERTIES:
+   :ID:       7330ebbc-ee0c-437a-a7f0-eb106b314b1e
+   :END:
+** Swap insert-register so that the non-prefix puts point after, prefix before
+   :PROPERTIES:
+   :ID:       8e5f6ab1-7bca-4aab-b6fd-993beddc5af2
+   :END:
+** zap-to-char-reverse
+   :PROPERTIES:
+   :ID:       fd075d2f-0a3d-4fa3-928a-4877b08d5e19
+   :END:
+** some nicer collapsing fn that collapses current level and below for org-mode
+** Agenda commands with deadlines
+   :PROPERTIES:
+   :ID:       fd55d581-c583-429c-8cf5-74282f6c94cf
+   :END:
+   C-a p a shows all TODO under a TODO, unlike C-a t
+   Some mix of deadlines, priorities, etc
+* Things to learn and install
+** Emacs saving macros and editting their bindings easily without .emacs
+** CEDET?
+   Speedbar at least, seems CEDET might require a lot of hacking to worth with go projects
+   https://www.emacswiki.org/emacs/EmacsCodeBrowser
+   Does etags support go? If so, might be easy
+** Abbrevs
+*** https://www.gnu.org/software/emacs/manual/html_node/emacs/Abbrevs.html#Abbrevs
+*** Make a global keybinding for define-global-abbrev
+*** C-x a g : define abbrev expanding into words before point
+*** C-x a l : just for the current major-mode
+*** M-/ : dynamic abbrev = search for a completion
+*** why when I abbrev-prefix-mark is there a newline inserted
+    :PROPERTIES:
+    :ID:       2a068b48-a358-4a11-af66-ea5f7fe05017
+    :END:
+** https://github.com/davidhalter/jedi and associated modes?
+* Things I want to incorporate into workflows in the future
+** Projectile mode - project utilities like search-project - https://github.com/bbatsov/projectile
+** Keys from prelude-mode - https://prelude.emacsredux.com/en/latest/usage/
+** Helm - fancy autocomplete/searching - maybe not right away
+** questionable things - maybe, maybe not
+* maybes
+** put avy-goto-char-timer back on C-c j
+** anzu for refactoring - anzu-replace-at-cursor-thing
+** (setq tab-always-indent 'complete)
+* definite keeps
+zop-to-char
+crux-move-beginning-of-line binding
+anzu (unless swiper)
+* well-known config files for reference
+https://www.emacswiki.org/emacs/CategoryDotEmacs
+ https://www.emacswiki.org/emacs/ExampleConfigurations
+ https://github.com/purcell/emacs.d
+ http://pages.sachachua.com/.emacs.d/Sacha.html
+* navigation vs searching vs etc
+I have swiper for searching in buffer, which can ALSO be used for navigation
+  then avy can be used for navigation, but only for things for that are visible... so maybe that's not worth it? but it can also switch windows
+
+anzu is like a super lightweight isearch improvement, much less than swiper
+* swiper
+Calling search while point is near the bottom moves things to keep point showing -- is there something better?
+It doesn't put shortcuts for reverse by default... neither C-r from global map, nor C-r from swiper-mode or whatever it is
+swiper-mode select options the way company-mode has
+swiper-mode but in a window the way company-mode has?? or in a large buffer? good for navigation
+* Do something to have company off in org-mode -- also move it it prog-mode-hook or ??
+* Grep
+** unbind counsel-git-grep C-c j
+** add git-grep to projectile's project search -- maybe? if its builtin grep isn't good enough? or just use rg?
+* I feel like the undo tracking system batches things in bigger batches, not sure if I like it
+* Questions or decisions
+** Which modes do I want to diminish?
+** delight instead of diminish? seems like an improvement
+** does which-function-mode works in org-mode reasonably?
+** use-package?
+ https://github.com/jwiegley/use-package
+** Do I like ctrl-backspace for kill-line-backwards and indent ... maybe that's okay!
+** Do I want to use hippie-expand for anything, or just put company-complete on that during modes
+** smex vs counsel M-x
+* easy things
+** Install CGH as a prelude-search-engine
+** remove counsel-find-file and go back to find-file with ido-mode
+** change to use ido-mode for file
+** recover my paren settings from work laptop
+** remap query-replace, query-replace-regex with, at minimum, anzu
