@@ -42,22 +42,15 @@ buffer-local macros maybe? like a different kind of yasnippet effect?
 ** https://github.com/davidhalter/jedi and associated modes?
 * Things I want to incorporate into workflows in the future
 ** Projectile mode - project utilities like search-project - https://github.com/bbatsov/projectile
-** Keys from prelude-mode - https://prelude.emacsredux.com/en/latest/usage/
+** Keys from prelude-mode - see prelude-global-keybindings.el
 ** Helm - fancy autocomplete/searching - maybe not right away
-** questionable things - maybe, maybe not
-* maybes
-** put avy-goto-char-timer back on C-c j
-** anzu for refactoring - anzu-replace-at-cursor-thing
-** (setq tab-always-indent 'complete)
-* definite keeps
-zop-to-char
-crux-move-beginning-of-line binding
-anzu (unless swiper)
-super-save
-whitespace
-company
-which-key
-* Crux... seems like it does a bunch of random different stuff
+** Crux... seems like it does a bunch of random different stuff
+* completion frameworks
+Helm, Ivy, Ido
+https://sam217pa.github.io/2016/09/13/from-helm-to-ivy/
+https://www.reddit.com/r/emacs/comments/7vcrwo/helm_vs_ivy_what_are_the_differences_what_are_the/
+* Something -- probably smartparens -- is messing up deleting parens
+eg given [abc] it won't let me delete the parens with backspace
 * I think I want towards disabling requiring prelude-global-keybindings
 It's required in init.el, and it makes life much harder if i want to disagree with the keybinds without modifying prelude's stuff
 * well-known config files for reference
@@ -80,7 +73,9 @@ So if I'm navigating onscreen (moving point to somewhere visible)
 If I'm searching... I think I want to break this down more, and understand the use cases
 * It would be nice to have a keybinding for swiper to change to searching in another buffer
    i.e. I start searching and realize I'm in the wrong buffer
-* Do something to have company off in org-mode -- also move it it prog-mode-hook or ??
+* Company mode config
+perhaps move it to prog-mode-hook? since I don't think I want it in org mode
+look into backends, maybe if there's an aspell-ish backend that WOULD be good for org
 * Grep
 ** unbind counsel-git-grep C-c j
 ** add git-grep to projectile's project search -- maybe? if its builtin grep isn't good enough? or just use rg?
@@ -98,7 +93,9 @@ If I'm searching... I think I want to break this down more, and understand the u
 ** Do I like ctrl-backspace for kill-line-backwards and indent ... maybe that's okay!
 ** Do I want to use hippie-expand for anything, or just put company-complete on that during modes
 ** smex vs counsel M-x
-* easy things
+** anzu for refactoring - anzu-replace-at-cursor-thing
+** (setq tab-always-indent 'complete) -- is that good?
+* easy things to do
 ** Install CGH as a prelude-search-engine
 ** recover my paren settings from work laptop
 ** remap query-replace, query-replace-regex with, at minimum, anzu

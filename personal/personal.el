@@ -156,27 +156,30 @@
 
 ;; The projectile mode line is too long! I don't need to know the type of
 ;;  project, I likely already know that immediately from the name
-
 (defun projectile-custom-mode-line ()
   (let ((project-name (projectile-project-name)))
-    (format " proj[%s]"
+    (format " proj:%s"
             (or project-name "-"))))
 
 (setq projectile-mode-line-function 'projectile-custom-mode-line)
-(projectile-update-mode-line)
 
-;; Enabled minor modes: Anzu Async-Bytecomp-Package Auto-Composition
-;; Auto-Compression Auto-Encryption Auto-Revert Beacon Column-Number
-;; Company Diff-Auto-Refine Diff-Hl Editorconfig Eldoc Electric-Indent
+;; Until I actually have a project using EditorConfig,
+;;   there's no reason to have it enabled
+(editorconfig-mode 0)
+
+;; here's a list of minor modes; I'll delete things as I understand/customize them
+;; Enabled minor modes:  Async-Bytecomp-Package Auto-Composition
+;; Auto-Compression Auto-Encryption Auto-Revert Beacon
+;; Company Diff-Auto-Refine Diff-Hl Eldoc Electric-Indent
 ;; Elisp-Slime-Nav File-Name-Shadow Flx-Ido Flycheck Flyspell Font-Lock
 ;; Global-Anzu Global-Company Global-Diff-Hl Global-Eldoc Global-Flycheck
 ;; Global-Font-Lock Global-Git-Commit Global-Hl-Line Global-Hl-Todo
-;; Global-Magit-File Global-Undo-Tree Guru Hl-Todo Ido-Ubiquitous Ivy
-;; Line-Number Magit-Auto-Revert Magit-File Mouse-Wheel Prelude
+;; Global-Undo-Tree Guru Hl-Todo Ido-Ubiquitous Ivy
+;; Magit-Auto-Revert Mouse-Wheel Prelude
 ;; Projectile Rainbow Rainbow-Delimiters Recentf Save-Place Savehist
 ;; Shell-Dirtrack Show-Smartparens Show-Smartparens-Global Smartparens
-;; Smartparens-Strict Super-Save Tooltip Transient-Mark Undo-Tree
-;; Volatile-Highlights Which-Key Whitespace Winner
+;; Smartparens-Strict Tooltip Transient-Mark Undo-Tree
+;; Volatile-Highlights Which-Key Winner
 
 ;; Modes that I don't want to think about or see
 ;; aka diminsh ALL THE THINGS
@@ -186,6 +189,7 @@
 (diminish 'super-save-mode)
 (diminish 'ivy-mode)
 (diminish 'which-key-mode)
+(diminish 'guru-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ivy, swiper, counsel
