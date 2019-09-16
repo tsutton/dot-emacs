@@ -54,6 +54,12 @@ zop-to-char
 crux-move-beginning-of-line binding
 anzu (unless swiper)
 super-save
+whitespace
+company
+which-key
+* Crux... seems like it does a bunch of random different stuff
+* I think I want towards disabling requiring prelude-global-keybindings
+It's required in init.el, and it makes life much harder if i want to disagree with the keybinds without modifying prelude's stuff
 * well-known config files for reference
 https://www.emacswiki.org/emacs/CategoryDotEmacs
  https://www.emacswiki.org/emacs/ExampleConfigurations
@@ -62,13 +68,18 @@ https://www.emacswiki.org/emacs/CategoryDotEmacs
 * navigation vs searching vs etc
 I have swiper for searching in buffer, which can ALSO be used for navigation
   then avy can be used for navigation, but only for things for that are visible... so maybe that's not worth it? but it can also switch windows
+  yeah I don't like avy
 
 anzu is like a super lightweight isearch improvement, much less than swiper
-* swiper
-Calling search while point is near the bottom moves things to keep point showing -- is there something better?
-It doesn't put shortcuts for reverse by default... neither C-r from global map, nor C-r from swiper-mode or whatever it is
-swiper-mode select options the way company-mode has
-swiper-mode but in a window the way company-mode has?? or in a large buffer? good for navigation
+
+So if I'm navigating onscreen (moving point to somewhere visible)
+   then I'm not even looking at the minibuffer, in fact that's not useful
+   and the fact that navigating FROM the bottom of the window with ivy moves around, is real bad
+   but I still like ivy's highlighting, navigating matches with C-n/C-p, and restricting
+
+If I'm searching... I think I want to break this down more, and understand the use cases
+* It would be nice to have a keybinding for swiper to change to searching in another buffer
+   i.e. I start searching and realize I'm in the wrong buffer
 * Do something to have company off in org-mode -- also move it it prog-mode-hook or ??
 * Grep
 ** unbind counsel-git-grep C-c j
@@ -89,8 +100,6 @@ swiper-mode but in a window the way company-mode has?? or in a large buffer? goo
 ** smex vs counsel M-x
 * easy things
 ** Install CGH as a prelude-search-engine
-** remove counsel-find-file and go back to find-file with ido-mode
-** change to use ido-mode for file
 ** recover my paren settings from work laptop
 ** remap query-replace, query-replace-regex with, at minimum, anzu
 * All prelude packages
@@ -114,6 +123,7 @@ Keep! Requires no thought to use, no keys to bind, and just makes things a littl
 when a visited file changes on disk, automatically revert the buffer it's in
 ** Beacon
 ** Ivy, counsel, swiper
+Ivy is a completion backend based on the minibuffer. It can be used for things like find-file or isearch -- those are the kinds of things counsel and swiper do - they are ivy frontends.
 ** Ido-related-things
 ** save-place
 ** smartparens
@@ -123,3 +133,9 @@ when a visited file changes on disk, automatically revert the buffer it's in
 ** [and more]
 ** anzu
 ** swiper
+* philosophy
+There's things that are just more powerful but mostly drop-in replacements -- usually things that require minimal relearning or learning something different from std Emacs. Example: replacements for find-file or M-x, whitespace, ido, supersave
+
+There's powerful flexible tools like magit or projectile mode that you have to learn what they do, but its mostly different than what Emac usually does
+
+Then there's modes that replace part of Emacs but do things in a different way, like changing how you navigate your files and buffers. These ones are the trickiest to include!

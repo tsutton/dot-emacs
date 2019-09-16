@@ -127,8 +127,10 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Prelude
-;; modify the defaults from Prelude
-;;    (unless they've already been modified)
+
+;; Eventually, I will disable the (require 'prelude-global-keybindings) line
+;;   from Prelude's init.el. In the mean time, I'll futz with the keybindings
+;;   one-by-one
 (if (equal (lookup-key (current-global-map) (kbd "C-c j"))
            'avy-goto-word-or-subword-1)
     (global-set-key (kbd "C-c j") 'avy-goto-char-timer)
@@ -137,6 +139,11 @@
            'avy-goto-word-or-subword-1)
     (global-unset-key (kbd "s-."))
   )
+
+;; Prelude rebinds C-<backspace> to basically kill-line then indent
+;;    I'd rather keep that key as the original and use M-<backspace> for that
+(global-set-key (kbd "C-<backspace>") 'backward-kill-word)
+(global-set-key (kbd "M-<backspace>") 'crux-kill-line-backwards)
 
 (delete-selection-mode 0)
 (global-auto-revert-mode 0)
@@ -172,11 +179,13 @@
 ;; Volatile-Highlights Which-Key Whitespace Winner
 
 ;; Modes that I don't want to think about or see
+;; aka diminsh ALL THE THINGS
 (diminish 'whitespace-mode)
 (diminish 'auto-revert-mode)
 (diminish 'company-mode)
 (diminish 'super-save-mode)
 (diminish 'ivy-mode)
+(diminish 'which-key-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ivy, swiper, counsel
@@ -196,6 +205,7 @@
 (global-set-key [remap isearch-backward] 'swiper-backward)
 
 (global-set-key (kbd "M-x") 'counsel-M-x)
+;; Note - it seems remapping (kbd "<f1> *") also remaps C-h *
 (global-set-key (kbd "<f1> f") 'counsel-describe-function)
 (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
 (global-set-key (kbd "<f1> l") 'counsel-find-library)
@@ -216,6 +226,9 @@
 ;; (global-set-key (kbd "C-c a") 'counsel-ag)
 ;; (global-set-key (kbd "C-x l") 'counsel-locate)
 ;;   I use projectile-mode for these project-level things
+
+;; By default this is bound to S-SPC, but I like C-SPC better, and it matches with ido that way
+(define-key ivy-minibuffer-map (kbd "C-SPC") 'ivy-restrict-to-matches)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load clever-specific things onto work computer
