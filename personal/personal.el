@@ -175,6 +175,48 @@
 (diminish 'whitespace-mode)
 (diminish 'auto-revert-mode)
 (diminish 'company-mode)
+(diminish 'super-save-mode)
+(diminish 'ivy-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ivy, swiper, counsel
+;; I'm not a huge fan of all the things in prelude-ivy module
+;; but some of this is from that!
+(prelude-require-packages '(ivy swiper counsel))
+(require 'ivy)
+
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+
+(setq projectile-completion-system 'ivy)
+
+(global-set-key [remap isearch-forward] 'swiper)
+(global-set-key [remap isearch-backward] 'swiper-backward)
+
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+;; These are from the lines from prelude-ivy (as of 9-15-19) that I'm not using
+;; with reasoning below
+;; (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+;;   I prefer ido-mode for find-file
+;; (global-set-key "\C-s" 'swiper)
+;;   I remap this in a different way
+;; (global-set-key (kbd "<f6>") 'ivy-resume)
+;;    I don't use <f-> for anything
+;; (global-set-key (kbd "C-c g") 'counsel-git)
+;; (global-set-key (kbd "C-c j") 'counsel-git-grep)
+;; (global-set-key (kbd "C-c a") 'counsel-ag)
+;; (global-set-key (kbd "C-x l") 'counsel-locate)
+;;   I use projectile-mode for these project-level things
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load clever-specific things onto work computer
 (if (equal (system-name) "quillen.local")

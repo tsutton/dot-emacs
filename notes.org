@@ -24,6 +24,7 @@
    Some mix of deadlines, priorities, etc
 * Things to learn and install
 ** Emacs saving macros and editting their bindings easily without .emacs
+buffer-local macros maybe? like a different kind of yasnippet effect?
 ** CEDET?
    Speedbar at least, seems CEDET might require a lot of hacking to worth with go projects
    https://www.emacswiki.org/emacs/EmacsCodeBrowser
@@ -52,6 +53,7 @@
 zop-to-char
 crux-move-beginning-of-line binding
 anzu (unless swiper)
+super-save
 * well-known config files for reference
 https://www.emacswiki.org/emacs/CategoryDotEmacs
  https://www.emacswiki.org/emacs/ExampleConfigurations
@@ -72,9 +74,10 @@ swiper-mode but in a window the way company-mode has?? or in a large buffer? goo
 ** unbind counsel-git-grep C-c j
 ** add git-grep to projectile's project search -- maybe? if its builtin grep isn't good enough? or just use rg?
 ** projectile also has a (customizable) option (projectile-use-git-grep) for using uh, git grep
-(projectile-update-mode-line)
 * Why is flycheck giving me a squiggle for (setq projectile-mode-line-function ...)?
 * I feel like the undo tracking system batches things in bigger batches, not sure if I like it
+* What does ivy-mode do that isn't being done by the config?
+`C-h f ivy-mode` gives a lot of information about this
 * Questions or decisions
 ** Which modes do I want to diminish?
 ** delight instead of diminish? seems like an improvement
@@ -90,3 +93,33 @@ swiper-mode but in a window the way company-mode has?? or in a large buffer? goo
 ** change to use ido-mode for file
 ** recover my paren settings from work laptop
 ** remap query-replace, query-replace-regex with, at minimum, anzu
+* All prelude packages
+** super-save
+*** description
+Saves buffers when they lose focus, or when idle
+Exactly which things trigger the save is customizable
+*** verdict
+Keep! Requires no thought to use, no keys to bind, and just makes things a little nicer
+** projectile
+** company
+** flyspell
+** flycheck
+** whitespace
+*** description
+Cleans up bad or highlights whitespace - exactly what constitutes is customizable.
+ For example, trailing whitespace on lines, trailing empty lines in files, mixes of tabs and spaces, etc
+*** Verdict
+Keep! Requires no thought to use, no keys to bind, and just makes things a little nicer
+** auto-revert-mode
+when a visited file changes on disk, automatically revert the buffer it's in
+** Beacon
+** Ivy, counsel, swiper
+** Ido-related-things
+** save-place
+** smartparens
+** which-function
+** winner
+** undo-tree
+** [and more]
+** anzu
+** swiper
