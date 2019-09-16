@@ -80,6 +80,8 @@ look into backends, maybe if there's an aspell-ish backend that WOULD be good fo
 ** unbind counsel-git-grep C-c j
 ** add git-grep to projectile's project search -- maybe? if its builtin grep isn't good enough? or just use rg?
 ** projectile also has a (customizable) option (projectile-use-git-grep) for using uh, git grep
+** projecile grep doesn't handle large results well
+** projectile builtin grep doesn't search ts files?
 * Why is flycheck giving me a squiggle for (setq projectile-mode-line-function ...)?
 * I feel like the undo tracking system batches things in bigger batches, not sure if I like it
 * What does ivy-mode do that isn't being done by the config?
@@ -105,6 +107,10 @@ look into backends, maybe if there's an aspell-ish backend that WOULD be good fo
 (setq show-paren-style 'parenthesis)
 (electric-pair-mode 1)
 ** remap query-replace, query-replace-regex with, at minimum, anzu
+** remap C-n, C-p during ido selection
+right and left do ido-next-match and ido-previous-match -- figure out where ido adds those bindings, and add them myself for C-n C-p
+** swiper pressing enter without a match doesn't do anything
+* tide jump to definition read from minibuffer
 * All prelude packages
 ** super-save
 *** description
@@ -142,3 +148,6 @@ There's things that are just more powerful but mostly drop-in replacements -- us
 There's powerful flexible tools like magit or projectile mode that you have to learn what they do, but its mostly different than what Emac usually does
 
 Then there's modes that replace part of Emacs but do things in a different way, like changing how you navigate your files and buffers. These ones are the trickiest to include!
+* tide mode
+why does the parsing of JSX blocks sometimes die
+why does the autoimport sometimes not work
