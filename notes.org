@@ -71,6 +71,9 @@ swiper-mode but in a window the way company-mode has?? or in a large buffer? goo
 * Grep
 ** unbind counsel-git-grep C-c j
 ** add git-grep to projectile's project search -- maybe? if its builtin grep isn't good enough? or just use rg?
+** projectile also has a (customizable) option (projectile-use-git-grep) for using uh, git grep
+(projectile-update-mode-line)
+* Why is flycheck giving me a squiggle for (setq projectile-mode-line-function ...)?
 * I feel like the undo tracking system batches things in bigger batches, not sure if I like it
 * Questions or decisions
 ** Which modes do I want to diminish?

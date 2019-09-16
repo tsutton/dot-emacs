@@ -147,6 +147,17 @@
 (which-function-mode 0)
 (add-hook 'prelude-prog-mode-hook 'which-function-mode)
 
+;; The projectile mode line is too long! I don't need to know the type of
+;;  project, I likely already know that immediately from the name
+
+(defun projectile-custom-mode-line ()
+  (let ((project-name (projectile-project-name)))
+    (format " proj[%s]"
+            (or project-name "-"))))
+
+(setq projectile-mode-line-function 'projectile-custom-mode-line)
+(projectile-update-mode-line)
+
 ;; Enabled minor modes: Anzu Async-Bytecomp-Package Auto-Composition
 ;; Auto-Compression Auto-Encryption Auto-Revert Beacon Column-Number
 ;; Company Diff-Auto-Refine Diff-Hl Editorconfig Eldoc Electric-Indent
@@ -163,7 +174,7 @@
 ;; Modes that I don't want to think about or see
 (diminish 'whitespace-mode)
 (diminish 'auto-revert-mode)
-
+(diminish 'company-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load clever-specific things onto work computer
 (if (equal (system-name) "quillen.local")
