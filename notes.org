@@ -98,6 +98,12 @@ look into backends, maybe if there's an aspell-ish backend that WOULD be good fo
 * easy things to do
 ** Install CGH as a prelude-search-engine
 ** recover my paren settings from work laptop
+** parens from before
+;; show-paren: Highlight the matching paren when point is on an open or after a close
+;; electric-pair-mode: when typing an open bracket or quote of any kind, insert matching
+(show-paren-mode 1)
+(setq show-paren-style 'parenthesis)
+(electric-pair-mode 1)
 ** remap query-replace, query-replace-regex with, at minimum, anzu
 * All prelude packages
 ** super-save

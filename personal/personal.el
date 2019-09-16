@@ -124,6 +124,19 @@
 (define-key tide-mode-map (kbd "C->") 'tide-references)
 (define-key tide-mode-map (kbd "C-<") 'tide-rename-symbol)
 (define-key tide-mode-map (kbd "M-/") 'company-complete)
+(define-key tide-mode-map (kbd "C-c C-j") 'tide-jump-to-definition)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Go things
+(defun my-go-mode-hook ()
+  (company-mode 1)
+  (define-key go-mode-map (kbd "M-/") 'company-complete)
+  ; (set (make-local-variable 'company-backends) '(company-go)) -- set by prelude-go module
+  ; this way, gofmt will be called before save but only when go-mode is on
+  ; (add-hook 'before-save-hook 'gofmt-before-save nil 1)) -- set by prelude-go module
+)
+
+(add-hook 'go-mode-hook 'my-go-mode-hook)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Prelude
