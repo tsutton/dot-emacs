@@ -2,10 +2,10 @@
 ;; General purpose keybindings
 
 (global-set-key (kbd "C-x C-o") 'other-window)
-(global-set-key (kbd "M-]") 'forward-paragraph)
-(global-set-key (kbd "M-[") 'backward-paragraph)
-(global-set-key (kbd "C-M-a") 'query-replace) ;formerly beginning-of-defun
-(global-set-key (kbd "C-M-e") 'query-replace-regexp) ;formerly end-of-defun
+(global-set-key (kbd "M-]") 'beginning-of-defun)
+(global-set-key (kbd "M-[") 'end-of-defun)
+(global-set-key (kbd "C-M-a") 'anzu-query-replace) ;formerly beginning-of-defun
+(global-set-key (kbd "C-M-e") 'anzu-query-replace-regexp) ;formerly end-of-defun
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "M-C-S-n") 'forward-line) ; good for macros
 
@@ -246,6 +246,12 @@
 
 ;; By default this is bound to S-SPC, but I like C-SPC better, and it matches with ido that way
 (define-key ivy-minibuffer-map (kbd "C-SPC") 'ivy-restrict-to-matches)
+
+;; Ido defines a few keymaps that it uses in different situations
+;; I want to add to all of them to navigate matches
+;; (these are bound to left and right already by default)
+(define-key ido-common-completion-map (kbd "C-n") 'ido-next-match)
+(define-key ido-common-completion-map (kbd "C-p") 'ido-previous-match)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load clever-specific things onto work computer

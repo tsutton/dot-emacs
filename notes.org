@@ -49,8 +49,6 @@ buffer-local macros maybe? like a different kind of yasnippet effect?
 Helm, Ivy, Ido
 https://sam217pa.github.io/2016/09/13/from-helm-to-ivy/
 https://www.reddit.com/r/emacs/comments/7vcrwo/helm_vs_ivy_what_are_the_differences_what_are_the/
-* Something -- probably smartparens -- is messing up deleting parens
-eg given [abc] it won't let me delete the parens with backspace
 * I think I want towards disabling requiring prelude-global-keybindings
 It's required in init.el, and it makes life much harder if i want to disagree with the keybinds without modifying prelude's stuff
 * well-known config files for reference
@@ -69,6 +67,10 @@ So if I'm navigating onscreen (moving point to somewhere visible)
    then I'm not even looking at the minibuffer, in fact that's not useful
    and the fact that navigating FROM the bottom of the window with ivy moves around, is real bad
    but I still like ivy's highlighting, navigating matches with C-n/C-p, and restricting
+
+swiper searches for LINE MATCHES and is less good for moving around within the line
+   It would be cool to use C-f and C-b for navigating the matches within the line, in the case
+   that a line matches more than once
 
 If I'm searching... I think I want to break this down more, and understand the use cases
 * It would be nice to have a keybinding for swiper to change to searching in another buffer
@@ -92,25 +94,18 @@ look into backends, maybe if there's an aspell-ish backend that WOULD be good fo
 ** does which-function-mode works in org-mode reasonably?
 ** use-package?
  https://github.com/jwiegley/use-package
-** Do I like ctrl-backspace for kill-line-backwards and indent ... maybe that's okay!
 ** Do I want to use hippie-expand for anything, or just put company-complete on that during modes
 ** smex vs counsel M-x
 ** anzu for refactoring - anzu-replace-at-cursor-thing
 ** (setq tab-always-indent 'complete) -- is that good?
 * easy things to do
 ** Install CGH as a prelude-search-engine
-** recover my paren settings from work laptop
-** parens from before
-;; show-paren: Highlight the matching paren when point is on an open or after a close
-;; electric-pair-mode: when typing an open bracket or quote of any kind, insert matching
-(show-paren-mode 1)
-(setq show-paren-style 'parenthesis)
-(electric-pair-mode 1)
-** remap query-replace, query-replace-regex with, at minimum, anzu
-** remap C-n, C-p during ido selection
-right and left do ido-next-match and ido-previous-match -- figure out where ido adds those bindings, and add them myself for C-n C-p
 ** swiper pressing enter without a match doesn't do anything
+** For some reason now, C-f is bound to ivy find file from ido find file
 * tide jump to definition read from minibuffer
+* ido addons
+ido-ubiquitous
+flx-ido
 * All prelude packages
 ** super-save
 *** description
