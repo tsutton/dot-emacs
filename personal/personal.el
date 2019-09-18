@@ -2,8 +2,8 @@
 ;; General purpose keybindings
 
 (global-set-key (kbd "C-x C-o") 'other-window)
-(global-set-key (kbd "M-]") 'beginning-of-defun)
-(global-set-key (kbd "M-[") 'end-of-defun)
+(global-set-key (kbd "M-[") 'beginning-of-defun)
+(global-set-key (kbd "M-]") 'end-of-defun)
 (global-set-key (kbd "C-M-a") 'anzu-query-replace) ;formerly beginning-of-defun
 (global-set-key (kbd "C-M-e") 'anzu-query-replace-regexp) ;formerly end-of-defun
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -218,8 +218,13 @@
 
 (setq projectile-completion-system 'ivy)
 
-(global-set-key [remap isearch-forward] 'swiper)
-(global-set-key [remap isearch-backward] 'swiper-backward)
+;; I prefer swiper-isearch over swiper -- because I use isearch
+;;  to navigate within a line, (e.g. I might search " " to advance)
+;;  to the next space on the line I'm in
+;; Perhpas I'll still bind swiper to something, but eh
+(global-set-key [remap isearch-forward] 'swiper-isearch)
+(global-set-key [remap isearch-backward] 'swiper-isearch-backward) ; global
+
 
 (global-set-key (kbd "M-x") 'counsel-M-x)
 ;; Note - it seems remapping (kbd "<f1> *") also remaps C-h *
