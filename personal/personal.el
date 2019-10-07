@@ -128,15 +128,19 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Go things
+(setq gofmt-command "goimports")
+
 (defun my-go-mode-hook ()
   (company-mode 1)
   (define-key go-mode-map (kbd "M-/") 'company-complete)
+  (whitespace-mode 0) ; gofmt does this already
   ; (set (make-local-variable 'company-backends) '(company-go)) -- set by prelude-go module
   ; this way, gofmt will be called before save but only when go-mode is on
   ; (add-hook 'before-save-hook 'gofmt-before-save nil 1)) -- set by prelude-go module
 )
 
-(add-hook 'go-mode-hook 'my-go-mode-hook)
+;; set my hook to run last
+(add-hook 'go-mode-hook 'my-go-mode-hook t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Prelude
