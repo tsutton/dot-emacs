@@ -184,6 +184,12 @@
 ;;   there's no reason to have it enabled
 (editorconfig-mode 0)
 
+;; prelude-crux has the line:
+;; (crux-with-line-or-region kill-region)
+;; which is a macro unraveling into an advice which makes kill-region kill the current line
+;; when region is inactive. but I use inactive region sometimes, so I don't like that behavior
+(advice-remove 'kill-region 'ad-Advice-kill-region)
+
 ;; here's a list of minor modes; I'll delete things as I understand/customize them
 ;; Enabled minor modes:  Async-Bytecomp-Package Auto-Composition
 ;; Auto-Compression Auto-Encryption Auto-Revert Beacon
