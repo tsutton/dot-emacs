@@ -268,6 +268,9 @@
 (define-key ido-common-completion-map (kbd "C-n") 'ido-next-match)
 (define-key ido-common-completion-map (kbd "C-p") 'ido-previous-match)
 
+;; Load my WIP jiq-mode
+(require 'jiq)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load clever-specific things onto work computer
 (if (equal (system-name) "quillen.local")
