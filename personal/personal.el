@@ -266,7 +266,7 @@
 ;; I want to add to all of them to navigate matches
 ;; (these are bound to left and right already by default)
 (define-key ido-common-completion-map (kbd "C-n") 'ido-next-match)
-(define-key ido-common-completion-map (kbd "C-p") 'ido-previous-match)
+(define-key ido-common-completion-map (kbd "C-p") 'ido-prev-match)
 
 ;; Load my WIP jiq-mode
 (require 'jiq)
