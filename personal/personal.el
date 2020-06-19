@@ -19,7 +19,8 @@
 		       (define-key org-mode-map (kbd "C-M-k") 'org-shiftmetaright))))
 (add-hook 'org-mode-hook 'toggle-truncate-lines)
 
-(when (equal system-type 'windows-nt)
+(cond
+ ((equal system-type 'windows-nt)
   (let ((prefix
        (cond
         ((equal (system-name) "TAYLOR-SURFACE") "C:\\Users\\taylo\\Dropbox\\")
@@ -32,6 +33,15 @@
       )
     )
   )
+ ((equal (system-name) "quillen.local")
+  (setq org-agenda-files (quote ("~/general.org")))
+  (setq org-directory "~/")
+  )
+ (t
+  (setq org-agenda-files (quote ("~/Dropbox/todo.org" "~/Dropbox/notes.org")))
+  (setq org-directory "~/Dropbox")
+  )
+ )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C-mode-specific things
@@ -271,6 +281,9 @@
 ;; Load my WIP jiq-mode
 (require 'jiq)
 
+;; Disable flyspell
+(setq prelude-flyspell nil)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load clever-specific things onto work computer
 (if (equal (system-name) "quillen.local")
@@ -280,5 +293,11 @@
       (if (file-exists-p "~/clever.el")
           (load "~/clever")
         )
+      (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
       )
   )
+
+
+(setq ido-use-filename-at-point nil)
+
+(put 'scroll-left 'disabled nil)
