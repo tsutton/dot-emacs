@@ -43,6 +43,10 @@
   )
  )
 
+
+(setq org-roam-directory "~/Dropbox/org-roam")
+(add-hook 'after-init-hook 'org-roam-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C-mode-specific things
 (add-hook 'c-mode-hook
@@ -301,3 +305,6 @@
 (setq ido-use-filename-at-point nil)
 
 (put 'scroll-left 'disabled nil)
+
+(with-eval-after-load 'rust-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
