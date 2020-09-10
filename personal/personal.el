@@ -306,5 +306,21 @@
 
 (put 'scroll-left 'disabled nil)
 
-(with-eval-after-load 'rust-mode
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+                                        ;(with-eval-after-load 'rust-mode
+                                        ;  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LSP mode set-up for language server
+;; TODO - is this the prefix I want?
+(setq lsp-keymap-prefix "C-c l")
+
+(require 'lsp-mode)
+(add-hook 'rust-mode-hook #'lsp)
+;; TODO learn the key bindings for lsp-find-definition/references/etc
+;; TODO configuration: https://emacs-lsp.github.io/lsp-mode/page/main-features/
+;;      breadcrumps, code actions, errors on modeline
+;;      format on save
+;; TODO configure snippets with yasnippet
+
+
+(current-active-maps)
