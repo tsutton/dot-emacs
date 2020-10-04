@@ -282,10 +282,15 @@
 (define-key ido-common-completion-map (kbd "C-n") 'ido-next-match)
 (define-key ido-common-completion-map (kbd "C-p") 'ido-prev-match)
 
+;; ido tries to use the filename at point as a seed to find-file,
+;; but more often ten not that messes things up
+(setq ido-use-filename-at-point nil)
+
 ;; Load my WIP jiq-mode
 (require 'jiq)
 
 ;; Disable flyspell
+;; TODO try re-enabling this; making sure that prog mode uses flyspell-prog-mode
 (setq prelude-flyspell nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -301,8 +306,6 @@
       )
   )
 
-
-(setq ido-use-filename-at-point nil)
 
 (put 'scroll-left 'disabled nil)
 
