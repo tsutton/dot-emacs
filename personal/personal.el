@@ -203,13 +203,18 @@
 (advice-remove 'kill-region 'ad-Advice-kill-region)
 
 ;; here's a list of minor modes; I'll delete things as I understand/customize them
+;; TODO next up for customization:
+;; Company
+;; Ivy
+;; Recentf
+;; undo-tree
 ;; Enabled minor modes:  Async-Bytecomp-Package Auto-Composition
 ;; Auto-Compression Auto-Encryption Auto-Revert Beacon
 ;; Company Diff-Auto-Refine Diff-Hl Eldoc Electric-Indent
 ;; Elisp-Slime-Nav File-Name-Shadow Flx-Ido Flycheck Flyspell Font-Lock
 ;; Global-Anzu Global-Company Global-Diff-Hl Global-Eldoc Global-Flycheck
 ;; Global-Font-Lock Global-Git-Commit Global-Hl-Line Global-Hl-Todo
-;; Global-Undo-Tree Guru Hl-Todo Ido-Ubiquitous Ivy
+;; Global-Undo-Tree Hl-Todo Ido-Ubiquitous Ivy
 ;; Magit-Auto-Revert Mouse-Wheel Prelude
 ;; Projectile Rainbow Rainbow-Delimiters Recentf Save-Place Savehist
 ;; Shell-Dirtrack Show-Smartparens Show-Smartparens-Global Smartparens
@@ -224,7 +229,8 @@
 (diminish 'super-save-mode)
 (diminish 'ivy-mode)
 (diminish 'which-key-mode)
-(diminish 'guru-mode)
+
+(setq prelude-guru nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ivy, swiper, counsel
@@ -278,12 +284,13 @@
 ;; Ido defines a few keymaps that it uses in different situations
 ;; I want to add to all of them to navigate matches
 ;; (these are bound to left and right already by default)
-(define-key ido-common-completion-map (kbd "C-n") 'ido-next-match)
-(define-key ido-common-completion-map (kbd "C-p") 'ido-prev-match)
+;; TODO I am trialing counsel-find-file instead of ido
+;; (define-key ido-common-completion-map (kbd "C-n") 'ido-next-match)
+;; (define-key ido-common-completion-map (kbd "C-p") 'ido-prev-match)
 
 ;; ido tries to use the filename at point as a seed to find-file,
 ;; but more often ten not that messes things up
-(setq ido-use-filename-at-point nil)
+;; (setq ido-use-filename-at-point nil)
 
 ;; Load my WIP jiq-mode
 (require 'jiq)
