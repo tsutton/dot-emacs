@@ -75,8 +75,8 @@
 (menu-bar-mode -1)
 
 ; Enable ido-mode
-(require 'ido)
-(ido-mode t)
+;; (require 'ido)
+;; (ido-mode t)
 
 ; Enable various useful commands that are disabled by default
 ; These three are enabled by prelude-editor
@@ -239,6 +239,7 @@
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 
 (setq projectile-completion-system 'ivy)
+(counsel-projectile-mode 1)
 
 ;; I prefer swiper-isearch over swiper -- because I use isearch
 ;;  to navigate within a line, (e.g. I might search " " to advance)
@@ -259,8 +260,8 @@
 
 ;; These are from the lines from prelude-ivy (as of 9-15-19) that I'm not using
 ;; with reasoning below
-;; (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-;;   I prefer ido-mode for find-file
+;; TODO I am trialing counsel-find-file instead of ido
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
 ;; (global-set-key "\C-s" 'swiper)
 ;;   I remap this in a different way
 ;; (global-set-key (kbd "<f6>") 'ivy-resume)
