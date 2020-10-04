@@ -43,10 +43,6 @@
   )
  )
 
-
-(setq org-roam-directory "~/Dropbox/org-roam")
-(add-hook 'after-init-hook 'org-roam-mode)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C-mode-specific things
 (add-hook 'c-mode-hook
