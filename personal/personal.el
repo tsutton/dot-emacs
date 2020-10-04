@@ -71,6 +71,8 @@
 
 ; Display (line,col) in the bottom bar
 ;; (column-number-mode)  - handled by prelude
+(global-nlinum-mode -1)
+(menu-bar-mode -1)
 
 ; Enable ido-mode
 (require 'ido)
