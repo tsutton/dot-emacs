@@ -33,7 +33,7 @@
       )
     )
   )
- ((equal (system-name) "quillen.local")
+ ((equal (system-name) "quillen")
   (setq org-agenda-files (quote ("~/general.org")))
   (setq org-directory "~/")
   )
@@ -297,18 +297,17 @@
 
 ;; Disable flyspell
 ;; TODO try re-enabling this; making sure that prog mode uses flyspell-prog-mode
-(setq prelude-flyspell nil)
+;; (setq prelude-flyspell nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load clever-specific things onto work computer
-(if (equal (system-name) "quillen.local")
+(if (equal (system-name) "quillen")
     (progn
       (require 'exec-path-from-shell)
       (exec-path-from-shell-initialize)
       (if (file-exists-p "~/clever.el")
           (load "~/clever")
         )
-      (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
       )
   )
 
