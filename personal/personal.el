@@ -143,9 +143,9 @@
 (setq gofmt-command "goimports")
 
 (defun my-go-mode-hook ()
-  (company-mode 1)
+;;  (company-mode 1) handled elsewhere
   (define-key go-mode-map (kbd "M-/") 'company-complete)
-  (whitespace-mode 0) ; gofmt does this already
+  (whitespace-mode 0) ; whitespace-mode highlights tabs which we DO NOT want for go
   ; (set (make-local-variable 'company-backends) '(company-go)) -- set by prelude-go module
   ; this way, gofmt will be called before save but only when go-mode is on
   ; (add-hook 'before-save-hook 'gofmt-before-save nil 1)) -- set by prelude-go module
@@ -321,6 +321,19 @@
 
 (require 'lsp-mode)
 (add-hook 'rust-mode-hook #'lsp)
+(add-hook 'go-mode-hook #'lsp)
+
+(lsp-register-custom-settings
+ '(("gopls.staticcheck" t t)))
+
+;; in go mode, have C-M-i: complete-symbol => completion-at-point-functions => lsp-completion-at-point
+;; if i jus sit around and idle, company kicks in, it seems
+;; now company has the numbers and respond to M-#, but lsp does not
+
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 ;; TODO learn the key bindings for lsp-find-definition/references/etc
 ;; TODO configuration: https://emacs-lsp.github.io/lsp-mode/page/main-features/
 ;;      breadcrumps, code actions, errors on modeline
