@@ -33,7 +33,7 @@
       )
     )
   )
- ((equal (system-name) "quillen.local")
+ ((equal (system-name) "quillen")
   (setq org-agenda-files (quote ("~/general.org")))
   (setq org-directory "~/")
   )
@@ -42,10 +42,6 @@
   (setq org-directory "~/Dropbox")
   )
  )
-
-
-(setq org-roam-directory "~/Dropbox/org-roam")
-(add-hook 'after-init-hook 'org-roam-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; C-mode-specific things
@@ -75,10 +71,12 @@
 
 ; Display (line,col) in the bottom bar
 ;; (column-number-mode)  - handled by prelude
+(global-nlinum-mode -1)
+(menu-bar-mode -1)
 
 ; Enable ido-mode
-(require 'ido)
-(ido-mode t)
+;; (require 'ido)
+;; (ido-mode t)
 
 ; Enable various useful commands that are disabled by default
 ; These three are enabled by prelude-editor
@@ -205,13 +203,18 @@
 (advice-remove 'kill-region 'ad-Advice-kill-region)
 
 ;; here's a list of minor modes; I'll delete things as I understand/customize them
+;; TODO next up for customization:
+;; Company
+;; Ivy
+;; Recentf
+;; undo-tree
 ;; Enabled minor modes:  Async-Bytecomp-Package Auto-Composition
 ;; Auto-Compression Auto-Encryption Auto-Revert Beacon
 ;; Company Diff-Auto-Refine Diff-Hl Eldoc Electric-Indent
 ;; Elisp-Slime-Nav File-Name-Shadow Flx-Ido Flycheck Flyspell Font-Lock
 ;; Global-Anzu Global-Company Global-Diff-Hl Global-Eldoc Global-Flycheck
 ;; Global-Font-Lock Global-Git-Commit Global-Hl-Line Global-Hl-Todo
-;; Global-Undo-Tree Guru Hl-Todo Ido-Ubiquitous Ivy
+;; Global-Undo-Tree Hl-Todo Ido-Ubiquitous Ivy
 ;; Magit-Auto-Revert Mouse-Wheel Prelude
 ;; Projectile Rainbow Rainbow-Delimiters Recentf Save-Place Savehist
 ;; Shell-Dirtrack Show-Smartparens Show-Smartparens-Global Smartparens
@@ -226,7 +229,8 @@
 (diminish 'super-save-mode)
 (diminish 'ivy-mode)
 (diminish 'which-key-mode)
-(diminish 'guru-mode)
+
+(setq prelude-guru nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ivy, swiper, counsel
@@ -241,6 +245,7 @@
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 
 (setq projectile-completion-system 'ivy)
+(counsel-projectile-mode 1)
 
 ;; I prefer swiper-isearch over swiper -- because I use isearch
 ;;  to navigate within a line, (e.g. I might search " " to advance)
@@ -261,8 +266,8 @@
 
 ;; These are from the lines from prelude-ivy (as of 9-15-19) that I'm not using
 ;; with reasoning below
-;; (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-;;   I prefer ido-mode for find-file
+;; TODO I am trialing counsel-find-file instead of ido
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
 ;; (global-set-key "\C-s" 'swiper)
 ;;   I remap this in a different way
 ;; (global-set-key (kbd "<f6>") 'ivy-resume)
@@ -279,35 +284,35 @@
 ;; Ido defines a few keymaps that it uses in different situations
 ;; I want to add to all of them to navigate matches
 ;; (these are bound to left and right already by default)
-(define-key ido-common-completion-map (kbd "C-n") 'ido-next-match)
-(define-key ido-common-completion-map (kbd "C-p") 'ido-prev-match)
+;; TODO I am trialing counsel-find-file instead of ido
+;; (define-key ido-common-completion-map (kbd "C-n") 'ido-next-match)
+;; (define-key ido-common-completion-map (kbd "C-p") 'ido-prev-match)
+
+;; ido tries to use the filename at point as a seed to find-file,
+;; but more often ten not that messes things up
+;; (setq ido-use-filename-at-point nil)
 
 ;; Load my WIP jiq-mode
 (require 'jiq)
 
 ;; Disable flyspell
-(setq prelude-flyspell nil)
+;; TODO try re-enabling this; making sure that prog mode uses flyspell-prog-mode
+;; (setq prelude-flyspell nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load clever-specific things onto work computer
-(if (equal (system-name) "quillen.local")
+(if (equal (system-name) "quillen")
     (progn
       (require 'exec-path-from-shell)
       (exec-path-from-shell-initialize)
       (if (file-exists-p "~/clever.el")
           (load "~/clever")
         )
-      (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
       )
   )
 
 
-(setq ido-use-filename-at-point nil)
-
 (put 'scroll-left 'disabled nil)
-
-                                        ;(with-eval-after-load 'rust-mode
-                                        ;  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LSP mode set-up for language server
@@ -322,5 +327,10 @@
 ;;      format on save
 ;; TODO configure snippets with yasnippet
 
+(with-eval-after-load 'rust-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
-(current-active-maps)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Theme
+;; Currently using misterioso but with the highlight foreground color changed
+;; for reference, the original was: #e1e1e0
