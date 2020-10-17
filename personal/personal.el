@@ -160,6 +160,8 @@
 ;; Eventually, I will disable the (require 'prelude-global-keybindings) line
 ;;   from Prelude's init.el. In the mean time, I'll futz with the keybindings
 ;;   one-by-one
+(global-set-key (kbd "C-c j") 'avy-goto-char-timer)
+
 (if (equal (lookup-key (current-global-map) (kbd "C-c j"))
            'avy-goto-word-or-subword-1)
     (global-set-key (kbd "C-c j") 'avy-goto-char-timer)
@@ -320,8 +322,8 @@
 (setq lsp-keymap-prefix "C-c l")
 
 (require 'lsp-mode)
-(add-hook 'rust-mode-hook #'lsp)
-(add-hook 'go-mode-hook #'lsp)
+(add-hook 'rust-mode-hook 'lsp-deferred)
+(add-hook 'go-mode-hook 'lsp-deferred)
 
 (lsp-register-custom-settings
  '(("gopls.staticcheck" t t)))
@@ -339,11 +341,15 @@
 ;;      breadcrumps, code actions, errors on modeline
 ;;      format on save
 ;; TODO configure snippets with yasnippet
+(yas-global-mode 1)
 
 (with-eval-after-load 'rust-mode
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Theme
-;; Currently using misterioso but with the highlight foreground color changed
-;; for reference, the original was: #e1e1e0
+(with-eval-after-load 'lsp-mode
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+
+(rg-enable-menu (kbd "C-c C-g"))
+
+(with-eval-after-load 'magit
+  (require 'forge))
